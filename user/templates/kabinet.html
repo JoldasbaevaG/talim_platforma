@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kabinet — Talim</title>
+<style>
+:root{--ink:#0b1b3a;--blue:#1d4ed8;--blue-d:#123a9e;--sky:#e8f0ff;--line:#e3e8f2;--mut:#5b6885;--bg:#f5f8ff;--err:#d92d20;--errbg:#fee4e2;--ok:#067647;--okbg:#dcfae6;--warn:#b54708;--warnbg:#fef0c7}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Inter,system-ui,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.5}
+a{text-decoration:none;color:inherit}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #93b4ff;outline-offset:2px}
+header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+.bar{max-width:1240px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;flex-direction:column;gap:6px}
+.logo{display:flex;align-items:center;gap:10px;font-size:26px;font-weight:800;color:var(--blue)}
+.logo i{width:38px;height:38px;border-radius:11px;background:var(--blue);display:grid;place-items:center}
+.logo svg{width:22px;height:22px;fill:#fff}
+.mini{display:flex;gap:16px;font-size:13px;color:var(--mut);flex-wrap:wrap}
+.mini button{border:0;background:none;font:inherit;color:inherit;cursor:pointer;padding:0}
+.mini button:hover,.mini button.on{color:var(--blue)}
+.mini button.on{font-weight:700}
+.right{display:flex;align-items:center;gap:14px}
+.seg{display:flex;background:var(--bg);border-radius:12px;padding:4px}
+.seg button{border:0;background:none;padding:9px 16px;border-radius:9px;font:inherit;font-weight:700;color:var(--mut);cursor:pointer}
+.seg button.on{background:#fff;color:var(--blue);box-shadow:0 2px 8px rgba(11,27,58,.1)}
+.me{display:flex;align-items:center;gap:10px;font-weight:600}
+.av{width:40px;height:40px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:800}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 20px;border-radius:11px;font:inherit;font-weight:700;border:2px solid var(--blue);cursor:pointer;background:var(--blue);color:#fff;transition:.15s}
+.btn:hover{background:var(--blue-d);border-color:var(--blue-d)}
+.btn.line{background:#fff;color:var(--blue)}.btn.line:hover{background:var(--sky)}
+.btn.red{background:#fff;color:var(--err);border-color:var(--err)}.btn.red:hover{background:var(--errbg)}
+
+main{max-width:1240px;margin:0 auto;padding:32px 24px 64px}
+.sec{display:none}.sec.show{display:block}
+[data-role]{display:none}body.ustoz [data-role=ustoz],body.talaba [data-role=talaba]{display:block}
+h1{font-size:30px;font-weight:800;letter-spacing:-.6px}
+h2{font-size:20px;font-weight:800;margin-bottom:14px}
+.lead{color:var(--mut);margin:4px 0 24px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px}
+.st{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px}
+.st b{display:block;font-size:32px;color:var(--blue);font-weight:800}
+.st span{color:var(--mut);font-size:14px}
+.st.bad b{color:var(--err)}
+.cols{display:grid;grid-template-columns:1.4fr 1fr;gap:20px}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;margin-bottom:20px}
+.item{border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:12px}
+.item:last-child{margin-bottom:0}
+.top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+.t{font-weight:700}
+.meta{color:var(--mut);font-size:13.5px}
+.pill{display:inline-block;padding:3px 11px;border-radius:99px;font-size:12.5px;font-weight:700;background:var(--sky);color:var(--blue)}
+.pill.ok{background:var(--okbg);color:var(--ok)}.pill.bad{background:var(--errbg);color:var(--err)}.pill.warn{background:var(--warnbg);color:var(--warn)}
+.bar2{height:8px;background:var(--line);border-radius:9px;overflow:hidden;margin:8px 0 2px}
+.bar2 i{display:block;height:100%;background:var(--ok)}
+.bar2.w i{background:#f79009}.bar2.r i{background:var(--err)}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+label{font-size:14px;font-weight:600}
+input,select,textarea{font:inherit;padding:11px 13px;border:1.5px solid var(--line);border-radius:11px;width:100%;background:#fff;color:var(--ink)}
+input:focus,select:focus,textarea:focus{border-color:var(--blue)}
+textarea{min-height:110px;resize:vertical}
+input[type=range]{padding:0;accent-color:var(--blue)}
+.crit{display:grid;grid-template-columns:140px 1fr 44px;gap:10px;align-items:center;font-size:14px;margin-bottom:6px}
+.txt{background:var(--bg);border-radius:10px;padding:12px;font-size:14px;margin:10px 0;white-space:pre-wrap}
+table{width:100%;border-collapse:collapse}
+th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);font-size:15px}
+th{color:var(--mut);font-size:13px;font-weight:600}
+tr.me td{background:var(--sky);font-weight:700}
+.rk{width:30px;height:30px;border-radius:50%;background:var(--sky);color:var(--blue);display:inline-grid;place-items:center;font-weight:800;font-size:14px}
+.rk.g{background:#fedf89;color:#93370d}
+.empty{color:var(--mut);text-align:center;padding:24px}
+.note{background:var(--warnbg);color:var(--warn);border-radius:12px;padding:12px 14px;font-size:14px;margin-bottom:16px}
+@media(max-width:900px){.stats{grid-template-columns:1fr 1fr}.cols{grid-template-columns:1fr}.g3{grid-template-columns:1fr}}
+@media(max-width:640px){.bar{flex-direction:column;align-items:flex-start}.right{width:100%;justify-content:space-between}.crit{grid-template-columns:100px 1fr 40px}}
+</style>
+</head>
+<body class="ustoz">
+
+<header>
+ <div class="bar">
+  <div class="brand">
+   <a href="/" class="logo"><i><svg viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3zM5 13.2V17c0 1.7 3.1 3 7 3s7-1.3 7-3v-3.8l-7 3.8-7-3.8z"/></svg></i>Talim</a>
+   <nav class="mini" id="nav">
+    <button data-go="home" class="on">Bosh sahifa</button>
+    <button data-go="tasks">Topshiriqlar</button>
+    <button data-go="check" data-only="ustoz">Tekshirish</button>
+    <button data-go="rating">Reyting</button>
+    <button data-go="rules">Mezonlar</button>
+   </nav>
+  </div>
+  <div class="right">
+   <div class="seg" role="group" aria-label="Rol"><button id="rU" class="on">Ustoz</button><button id="rT">Talaba</button></div>
+   <div class="me"><div class="av" id="av">U</div><span id="who">Ustoz</span><button class="btn line" id="out" style="padding:8px 14px">Chiqish</button></div>
+  </div>
+ </div>
+</header>
+
+<main>
+<!-- BOSH SAHIFA -->
+<section class="sec show" id="home">
+ <h1 id="hi">Xush kelibsiz!</h1>
+ <p class="lead">Amaliy va uyga vazifalar, tekshiruv va reyting bir joyda.</p>
+ <div class="stats" id="stats"></div>
+ <div class="cols">
+  <div class="card"><h2>So'nggi topshiriqlar</h2><div id="homeTasks"></div></div>
+  <div class="card"><h2>Reyting — top 3</h2><div id="homeTop"></div></div>
+ </div>
+</section>
+
+<!-- TOPSHIRIQLAR -->
+<section class="sec" id="tasks">
+ <h1>Topshiriqlar</h1>
+ <p class="lead" data-role="ustoz" style="display:none">Amaliy yoki uyga vazifa yarating. Talabalar javobi avtomatik ko'chirmaga tekshiriladi.</p>
+ <div class="card" data-role="ustoz">
+  <h2>Yangi topshiriq</h2>
+  <form id="fTask">
+   <div class="field"><label for="tt">Nomi</label><input id="tt" required placeholder="Masalan: Sonlar yig'indisi funksiyasi"></div>
+   <div class="field"><label for="td">Shart</label><textarea id="td" placeholder="Topshiriq sharti..."></textarea></div>
+   <div class="g3">
+    <div class="field"><label for="ty">Turi</label><select id="ty"><option>Amaliy</option><option>Uyga vazifa</option></select></div>
+    <div class="field"><label for="tdue">Muddat</label><input id="tdue" type="date" required></div>
+    <div class="field"><label for="tm">Maksimal ball</label><input id="tm" type="number" min="1" max="100" value="10"></div>
+   </div>
+   <button class="btn" type="submit">Topshiriq berish</button>
+  </form>
+ </div>
+ <div class="card"><h2>Barcha topshiriqlar</h2><div id="taskList"></div></div>
+</section>
+
+<!-- TEKSHIRISH -->
+<section class="sec" id="check">
+ <h1>Tekshirish va baholash</h1>
+ <p class="lead">Ko'chirma foizi avtomatik hisoblanadi. Belgilangan chegaradan oshgan ishlar qizil bilan ajratiladi.</p>
+ <div id="checkList"></div>
+</section>
+
+<!-- REYTING -->
+<section class="sec" id="rating">
+ <h1>Reyting</h1>
+ <p class="lead">Tekshirilgan topshiriqlardan olingan ballar yig'indisi.</p>
+ <div class="card"><table><thead><tr><th>O'rin</th><th>Talaba</th><th>Topshiriq</th><th>Jami ball</th></tr></thead><tbody id="rateBody"></tbody></table></div>
+</section>
+
+<!-- MEZONLAR -->
+<section class="sec" id="rules">
+ <h1>Baholash mezonlari</h1>
+ <p class="lead">Har bir ish quyidagi mezonlar bo'yicha baholanadi.</p>
+ <div class="card">
+  <h2>Ball taqsimoti</h2>
+  <table><thead><tr><th>Mezon</th><th>Ulushi</th><th>Kim baholaydi</th></tr></thead><tbody>
+   <tr><td>Bajarilishi</td><td>40%</td><td>Ustoz</td></tr>
+   <tr><td>Sifat va tozalik</td><td>30%</td><td>Ustoz</td></tr>
+   <tr><td>Mustaqillik (originallik)</td><td>20%</td><td>Avtomatik: 100% − ko'chirma</td></tr>
+   <tr><td>Vaqtida topshirish</td><td>10%</td><td>Avtomatik: muddatdan keyin 60%</td></tr>
+  </tbody></table>
+ </div>
+ <div class="card">
+  <h2>Yo'l qo'yilmaydigan holatlar</h2>
+  <p class="meta" style="font-size:15px">Ko'chirma <b id="thr">40</b>% dan oshsa ish "shubhali" deb belgilanadi va ustoz ko'rib chiqadi. Rad etilgan ish 0 ball oladi. Boshqa talaba javobini ko'chirish akademik halollikni buzish hisoblanadi.</p>
+ </div>
+</section>
+</main>
+
+<script>
+const $ = id => document.getElementById(id), THR = 40;
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const today = new Date().toISOString().slice(0,10);
+const ME = 1; // joriy talaba
+let user = null;
+try { user = JSON.parse(localStorage.getItem('talim_user')); } catch (e) {}
+if (!user) { location.href = '/registratsiya/'; }   // kirmagan odam kirish sahifasiga qaytariladi
+
+let S = {
+ students:[{id:1,name:'Ali Karimov'},{id:2,name:'Madina Rashidova'},{id:3,name:'Jasur Toshmatov'},{id:4,name:'Dilnoza Yusupova'},{id:5,name:'Bekzod Aliyev'}],
+ tasks:[
+  {id:1,title:"Python: sonlar yig'indisi funksiyasi",type:'Amaliy',due:'2026-10-05',max:10,desc:"Ro'yxatdagi sonlar yig'indisini hisoblovchi funksiya yozing va tushuntiring."},
+  {id:2,title:"Massivlar haqida referat",type:'Uyga vazifa',due:'2026-09-25',max:10,desc:"Massivlarning qo'llanilishi haqida o'z so'zlaringiz bilan yozing."}],
+ subs:[
+  {id:1,taskId:1,sid:2,late:false,text:"Funksiya ro'yxatdagi barcha elementlarni tsikl orqali aylanib chiqadi va har bir sonni umumiy yig'indiga qo'shadi natijani qaytaradi",g:false},
+  {id:2,taskId:1,sid:3,late:false,text:"Funksiya ro'yxatdagi barcha elementlarni tsikl orqali aylanib chiqadi va har bir sonni umumiy yig'indiga qo'shadi natijani qaytaradi",g:false},
+  {id:3,taskId:1,sid:4,late:false,text:"Men sum nomli o'zgaruvchi ochdim, for tsikli bilan sonlarni birma-bir qo'shdim va oxirida return orqali javobni chiqardim",g:true,done:90,quality:85,ball:9},
+  {id:4,taskId:2,sid:1,late:false,text:"Massiv bir xil turdagi ma'lumotlarni ketma-ket xotirada saqlaydi. Ular ro'yxatlar, jadvallar va tasvirlarni saqlashda ishlatiladi",g:true,done:80,quality:80,ball:8}
+ ]};
+try{const x=localStorage.getItem('talim_kabinet');if(x)S=JSON.parse(x)}catch(e){}
+const save = () => {try{localStorage.setItem('talim_kabinet',JSON.stringify(S))}catch(e){}};
+
+// Ko'chirma: 3 so'zli bo'laklar bo'yicha o'xshashlik
+const grams = t => {const w=t.toLowerCase().replace(/[^\p{L}\p{N}\s']/gu,'').split(/\s+/).filter(Boolean),s=new Set();for(let i=0;i<=w.length-3;i++)s.add(w.slice(i,i+3).join(' '));return s};
+function sim(sub){
+ const a=grams(sub.text);if(!a.size)return {p:0,with:null};let best=0,who=null;
+ S.subs.filter(o=>o.taskId===sub.taskId&&o.id!==sub.id).forEach(o=>{const b=grams(o.text);let c=0;a.forEach(x=>{if(b.has(x))c++});const p=Math.round(c/a.size*100);if(p>best){best=p;who=o.sid}});
+ return {p:best,with:who};
+}
+const name = id => (S.students.find(s=>s.id===id)||{}).name||'—';
+const task = id => S.tasks.find(t=>t.id===id);
+const role = () => document.body.classList.contains('ustoz')?'ustoz':'talaba';
+const calc = (s,p,late,done,q) => { const pct=done*.4+q*.3+(100-p)*.2+(late?60:100)*.1; return Math.round(pct*task(s.taskId).max/100) };
+
+// Navigatsiya
+function go(id){
+ document.querySelectorAll('.sec').forEach(s=>s.classList.toggle('show',s.id===id));
+ document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.go===id));
+ render();
+}
+document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>go(b.dataset.go));
+function setRole(r){
+ document.body.className=r;
+ $('rU').classList.toggle('on',r==='ustoz');$('rT').classList.toggle('on',r==='talaba');
+ const nm = user ? user.fio : (r==='ustoz' ? 'Ustoz' : name(ME));
+ $('who').textContent = nm;
+ $('av').textContent = nm.trim().charAt(0).toUpperCase();
+ document.querySelectorAll('[data-only=ustoz]').forEach(b=>b.style.display=r==='ustoz'?'':'none');
+ if(r==='talaba'&&$('check').classList.contains('show'))go('home');else render();
+}
+$('rU').onclick=()=>setRole('ustoz');$('rT').onclick=()=>setRole('talaba');
+
+// Reyting
+function ranking(){
+ const m={};S.students.forEach(s=>m[s.id]={id:s.id,name:s.name,n:0,sum:0});
+ S.subs.filter(s=>s.g).forEach(s=>{m[s.sid].n++;m[s.sid].sum+=s.ball});
+ return Object.values(m).sort((a,b)=>b.sum-a.sum);
+}
+
+function render(){
+ const r=role(), flagged=S.subs.filter(s=>!s.g&&sim(s).p>=THR).length, wait=S.subs.filter(s=>!s.g).length;
+ // Bosh sahifa
+ const first = user ? user.fio.trim().split(/\s+/)[0] : (r==='ustoz' ? 'ustoz' : name(ME).split(' ')[0]);
+ $('hi').textContent = 'Xush kelibsiz, ' + first + '!';
+ const mine=S.subs.filter(s=>s.sid===ME), myBall=mine.filter(s=>s.g).reduce((a,s)=>a+s.ball,0), pos=ranking().findIndex(x=>x.id===ME)+1;
+ $('stats').innerHTML = r==='ustoz'
+  ? `<div class="st"><b>${S.tasks.length}</b><span>Berilgan topshiriq</span></div><div class="st"><b>${wait}</b><span>Tekshirilmagan ish</span></div><div class="st ${flagged?'bad':''}"><b>${flagged}</b><span>Shubhali ish (ko'chirma)</span></div><div class="st"><b>${S.students.length}</b><span>Talabalar</span></div>`
+  : `<div class="st"><b>${S.tasks.filter(t=>!mine.some(s=>s.taskId===t.id)).length}</b><span>Topshirilmagan vazifa</span></div><div class="st"><b>${mine.length}</b><span>Yuborilgan ish</span></div><div class="st"><b>${myBall}</b><span>Jami ball</span></div><div class="st"><b>${pos}-o'rin</b><span>Reytingda</span></div>`;
+ $('homeTasks').innerHTML=S.tasks.slice().reverse().slice(0,3).map(taskCard).join('')||'<p class="empty">Topshiriq yo\'q</p>';
+ $('homeTop').innerHTML=ranking().slice(0,3).map((x,i)=>`<div class="item top"><span><span class="rk ${i?'':'g'}">${i+1}</span> &nbsp;<b>${esc(x.name)}</b></span><b>${x.sum} ball</b></div>`).join('');
+ // Topshiriqlar
+ $('taskList').innerHTML=S.tasks.slice().reverse().map(taskCard).join('')||'<p class="empty">Hozircha topshiriq yo\'q</p>';
+ // Tekshirish
+ $('checkList').innerHTML=S.subs.slice().sort((a,b)=>a.g-b.g).map(checkCard).join('')||'<div class="card empty">Tekshirish uchun ish yo\'q</div>';
+ // Reyting
+ $('rateBody').innerHTML=ranking().map((x,i)=>`<tr class="${x.id===ME&&r==='talaba'?'me':''}"><td><span class="rk ${i?'':'g'}">${i+1}</span></td><td>${esc(x.name)}</td><td>${x.n} ta</td><td><b>${x.sum}</b></td></tr>`).join('');
+ $('thr').textContent=THR;
+}
+
+function taskCard(t){
+ const r=role(), my=S.subs.find(s=>s.taskId===t.id&&s.sid===ME), late=today>t.due;
+ let act='';
+ if(r==='talaba'){
+  if(my) act=my.g?`<div class="meta" style="margin-top:8px">Sizning balingiz: <b>${my.ball}/${t.max}</b></div>`:`<span class="pill warn" style="margin-top:8px">Tekshirilmoqda</span>`;
+  else act=`<form onsubmit="send(event,${t.id})" style="margin-top:12px"><textarea name="a" required placeholder="Javobingizni o'zingiz yozing..."></textarea><button class="btn" style="margin-top:10px">Yuborish${late?' (kechikkan)':''}</button></form>`;
+ } else act=`<div class="meta" style="margin-top:6px">Yuborgan talabalar: ${S.subs.filter(s=>s.taskId===t.id).length}/${S.students.length}</div>`;
+ return `<div class="item"><div class="top"><div><div class="t">${esc(t.title)}</div><div class="meta">${esc(t.desc)}</div></div><div><span class="pill">${esc(t.type)}</span> <span class="pill ${late?'bad':'ok'}">Muddat: ${t.due}</span> <span class="pill">${t.max} ball</span></div></div>${act}</div>`;
+}
+
+function send(e,tid){
+ e.preventDefault();const t=task(tid),text=e.target.a.value.trim();if(!text)return;
+ S.subs.push({id:Date.now(),taskId:tid,sid:ME,late:today>t.due,text,g:false});save();
+ const s=S.subs[S.subs.length-1],p=sim(s).p;
+ alert(p>=THR?`Diqqat: javobingiz boshqa ish bilan ${p}% o'xshash. Ustoz ko'rib chiqadi.`:'Javobingiz yuborildi. Rahmat!');
+ render();
+}
+
+function checkCard(s){
+ const t=task(s.taskId),{p,with:w}=sim(s),bad=p>=THR,cls=p>=THR?'r':p>=20?'w':'';
+ const head=`<div class="top"><div><div class="t">${esc(name(s.sid))} — ${esc(t.title)}</div><div class="meta">${esc(t.type)} · ${s.late?'Kechikib topshirilgan':'Vaqtida topshirilgan'}</div></div>${s.g?`<span class="pill ${s.ball?'ok':'bad'}">${s.ball}/${t.max} ball</span>`:bad?'<span class="pill bad">Shubhali</span>':'<span class="pill warn">Kutmoqda</span>'}</div>`;
+ const sm=`<div class="meta" style="margin-top:10px">Ko'chirma: <b>${p}%</b>${w&&p>=20?` — <b>${esc(name(w))}</b> javobiga o'xshash`:''}</div><div class="bar2 ${cls}"><i style="width:${Math.max(p,3)}%"></i></div>`;
+ if(s.g)return `<div class="card">${head}<div class="txt">${esc(s.text)}</div>${sm}</div>`;
+ return `<div class="card" style="${bad?'border-color:var(--err)':''}">${head}<div class="txt">${esc(s.text)}</div>${sm}
+ ${bad?`<div class="note" style="background:var(--errbg);color:var(--err)">Ko'chirma ${THR}% dan oshdi. Ishni rad etish tavsiya etiladi.</div>`:''}
+ <div style="margin-top:12px"><div class="crit"><span>Bajarilishi (40%)</span><input type="range" min="0" max="100" value="80" id="d${s.id}" oninput="this.nextElementSibling.textContent=this.value"><b>80</b></div>
+ <div class="crit"><span>Sifat (30%)</span><input type="range" min="0" max="100" value="80" id="q${s.id}" oninput="this.nextElementSibling.textContent=this.value"><b>80</b></div></div>
+ <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap"><button class="btn" onclick="grade(${s.id})">Baholash</button><button class="btn red" onclick="reject(${s.id})">Ko'chirma sifatida rad etish</button></div></div>`;
+}
+function grade(id){const s=S.subs.find(x=>x.id===id),p=sim(s).p;s.done=+$('d'+id).value;s.quality=+$('q'+id).value;s.ball=calc(s,p,s.late,s.done,s.quality);s.g=true;save();render()}
+function reject(id){const s=S.subs.find(x=>x.id===id);s.ball=0;s.g=true;save();render()}
+
+$('fTask').addEventListener('submit',e=>{
+ e.preventDefault();
+ S.tasks.push({id:Date.now(),title:$('tt').value.trim(),desc:$('td').value.trim()||'Shart kiritilmagan',type:$('ty').value,due:$('tdue').value,max:+$('tm').value||10});
+ save();e.target.reset();$('tm').value=10;render();
+});
+
+document.querySelectorAll('[data-role=ustoz].lead').forEach(x=>x.style.display='');
+
+if (user) {
+  const isTeacher = user.role === 'oqituvchi';
+  if (!isTeacher) S.students[0].name = user.fio;         // talaba ismi ro'yxatdan o'tgan ism bilan almashadi
+  document.querySelector('.seg').style.display = 'none'; // sinov uchun rol almashtirgich yashiriladi
+  $('out').onclick = () => { try { localStorage.removeItem('talim_user'); } catch (e) {} location.href = '/'; };
+  setRole(isTeacher ? 'ustoz' : 'talaba');
+}
+</script>
+</body>
+</html>

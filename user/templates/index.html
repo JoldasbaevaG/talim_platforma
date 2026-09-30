@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Talim — Zamonaviy ta'lim tizimi</title>
+<style>
+:root{--ink:#0b1b3a;--blue:#1d4ed8;--blue-d:#123a9e;--sky:#e8f0ff;--line:#e3e8f2;--mut:#5b6885;--bg:#f5f8ff;--ok:#12b76a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Inter,system-ui,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.5}
+a{text-decoration:none;color:inherit}
+a:focus-visible,button:focus-visible{outline:3px solid #93b4ff;outline-offset:2px}
+
+/* HEADER */
+header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+.bar{max-width:1240px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;flex-direction:column;gap:6px}
+.logo{display:flex;align-items:center;gap:10px;font-size:26px;font-weight:800;color:var(--blue)}
+.logo i{width:38px;height:38px;border-radius:11px;background:var(--blue);display:grid;place-items:center}
+.logo svg{width:22px;height:22px;fill:#fff}
+.mini{display:flex;gap:16px;font-size:12.5px;color:var(--mut)}
+.mini a:hover,.mini a.on{color:var(--blue)}
+.mini a.on{font-weight:600}
+.actions{display:flex;gap:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 26px;border-radius:12px;font-size:16px;font-weight:700;border:2px solid var(--blue);cursor:pointer;transition:.15s}
+.btn.fill{background:var(--blue);color:#fff;box-shadow:0 8px 20px rgba(29,78,216,.28)}
+.btn.fill:hover{background:var(--blue-d);border-color:var(--blue-d)}
+.btn.line{background:#fff;color:var(--blue)}
+.btn.line:hover{background:var(--sky)}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0b1b3a 0%,#123a9e 60%,#1d4ed8 100%);color:#fff}
+.hero-in{max-width:1240px;margin:0 auto;padding:72px 24px 96px;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.tag{display:inline-block;background:rgba(255,255,255,.14);padding:8px 16px;border-radius:99px;font-size:14px;margin-bottom:22px}
+h1{font-size:clamp(36px,5.2vw,64px);line-height:1.05;font-weight:800;letter-spacing:-1.5px}
+.hero p{margin:22px 0 32px;font-size:19px;color:#cfdcff;max-width:560px}
+.hero .btn.fill{background:#fff;color:var(--blue);border-color:#fff;box-shadow:none;padding:16px 32px;font-size:17px}
+.hero .btn.line{background:transparent;color:#fff;border-color:rgba(255,255,255,.6);padding:16px 32px;font-size:17px}
+.hero .btn.line:hover{background:rgba(255,255,255,.12)}
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+
+/* mock panel */
+.panel{background:#fff;color:var(--ink);border-radius:20px;padding:22px;box-shadow:0 30px 60px rgba(0,0,0,.3)}
+.panel h4{font-size:15px;color:var(--mut);font-weight:600;margin-bottom:14px}
+.row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
+.row:last-child{border:0}
+.pill{padding:4px 12px;border-radius:99px;font-size:13px;font-weight:700;background:#dcfae6;color:#067647}
+.pill.b{background:var(--sky);color:var(--blue)}
+.big{font-size:34px;font-weight:800;color:var(--blue)}
+
+/* FEATURES */
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+.stats{margin-top:-48px;position:relative;display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border-radius:20px;box-shadow:0 14px 40px rgba(11,27,58,.12);overflow:hidden}
+.stats div{padding:28px 24px;border-right:1px solid var(--line)}
+.stats div:last-child{border:0}
+.stats b{display:block;font-size:34px;color:var(--blue);font-weight:800}
+.stats span{color:var(--mut);font-size:15px}
+section{padding:88px 0 0}
+h2{font-size:clamp(28px,3.4vw,42px);letter-spacing:-.8px;font-weight:800;max-width:720px}
+.sub{color:var(--mut);font-size:18px;margin:12px 0 40px;max-width:640px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.f{background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px}
+.f .ic{width:56px;height:56px;border-radius:16px;background:var(--sky);display:grid;place-items:center;margin-bottom:20px}
+.f svg{width:28px;height:28px;stroke:var(--blue);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.f h3{font-size:21px;margin-bottom:8px}
+.f p{color:var(--mut);font-size:15.5px}
+
+.final{margin:88px auto 0;max-width:1240px;padding:0 24px 72px}
+.final div{background:var(--blue);color:#fff;border-radius:24px;padding:56px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.final h2{color:#fff}
+.final .btn.fill{background:#fff;color:var(--blue);border-color:#fff;box-shadow:none}
+.final .btn.line{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+footer{border-top:1px solid var(--line);background:#fff;padding:24px;text-align:center;color:var(--mut);font-size:14px}
+
+@media(max-width:920px){
+ .hero-in{grid-template-columns:1fr;padding:48px 20px 80px}
+ .grid{grid-template-columns:1fr 1fr}
+ .stats{grid-template-columns:1fr 1fr}
+ .stats div:nth-child(2){border-right:0}
+ .stats div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+}
+@media(max-width:640px){
+ .bar{flex-direction:column;align-items:flex-start}
+ .actions{width:100%}.actions .btn{flex:1;padding:12px 10px;font-size:14px}
+ .mini{flex-wrap:wrap;gap:6px 14px}
+ .grid{grid-template-columns:1fr}
+ .final div{padding:32px 24px}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="bar">
+  <div class="brand">
+   <a href="#" class="logo" aria-label="Talim">
+    <i><svg viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3zM5 13.2V17c0 1.7 3.1 3 7 3s7-1.3 7-3v-3.8l-7 3.8-7-3.8z"/></svg></i>
+    Talim
+   </a>
+   <nav class="mini" aria-label="Asosiy menyu">
+    <a href="#" class="on">Bosh sahifa</a>
+    <a href="#tashkilot">Tashkilot</a>
+    <a href="#imkoniyatlar">Imkoniyatlar</a>
+    <a href="/yordam/">Yordam</a>
+   </nav>
+  </div>
+  <div class="actions">
+   <a href="/tashkilot/" class="btn line">Tashkilot ulash</a>
+   <a href="/registratsiya/" class="btn fill">Kirish / Ro'yxatdan o'tish</a>
+  </div>
+ </div>
+</header>
+
+<main>
+ <div class="hero">
+  <div class="hero-in">
+   <div>
+    <span class="tag">Oliy va o'rta maxsus ta'lim uchun yagona platforma</span>
+    <h1>Butun ta'lim jarayoni bitta tizimda</h1>
+    <p>Baholar, dars jadvali, davomat va kontrakt to'lovlari — talaba, o'qituvchi va ma'muriyat uchun tez, qulay va shaffof.</p>
+    <div class="cta">
+     <a href="/boshlash/" class="btn fill">Hozir boshlash</a>
+     <a href="/tashkilot/" class="btn line">Tashkilotni ulash</a>
+    </div>
+   </div>
+   <!-- <div class="panel" aria-hidden="true">
+    <h4>Talaba kabineti</h4>
+    <div class="row"><span>Davomat</span><span class="big">96%</span></div>
+    <div class="row"><span>Matematika — joriy nazorat</span><span class="pill">5 ball</span></div>
+    <div class="row"><span>Kontrakt to'lovi</span><span class="pill">To'langan</span></div>
+    <div class="row"><span>Keyingi dars, 09:00</span><span class="pill b">Xona 214</span></div>
+   </div> -->
+  </div>
+ </div>
+
+ <div class="wrap">
+  <div class="stats">
+   <div><b>24/7</b><span>Tizimga istalgan vaqtda kirish</span></div>
+   <div><b>3 rol</b><span>Talaba, o'qituvchi, ma'muriyat</span></div>
+   <div><b>1 daqiqa</b><span>Kontrakt to'lovini tekshirish</span></div>
+   <div><b>100%</b><span>Baholar va davomat shaffofligi</span></div>
+  </div>
+
+  <section id="imkoniyatlar">
+   <h2>Kerakli hamma narsa bir joyda</h2>
+   <p class="sub">Har bir funksiya kundalik ishni yengillashtirish uchun yaratilgan.</p>
+   <div class="grid">
+    <div class="f"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14zM8 7h8M8 11h6"/></svg></div><h3>Elektron jurnal</h3><p>Baholar va davomat real vaqtda yuritiladi. Talaba natijasini darhol ko'radi.</p></div>
+    <div class="f"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></div><h3>Dars jadvali</h3><p>Guruh, o'qituvchi va xona bo'yicha jadval. O'zgarishlar bir zumda yangilanadi.</p></div>
+    <div class="f"><div class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></div><h3>Kontrakt to'lovlari</h3><p>Qarzdorlik va to'lovlar holati aniq ko'rinadi. Onlayn to'lash mumkin.</p></div>
+    <div class="f"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg></div><h3>Hisobot va tahlil</h3><p>O'zlashtirish va davomat bo'yicha tayyor hisobotlar ma'muriyat uchun.</p></div>
+    <div class="f"><div class="ic"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h3>Xabarnomalar</h3><p>E'lon, topshiriq va muhim o'zgarishlar haqida o'z vaqtida xabar oling.</p></div>
+    <div class="f" id="tashkilot"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></div><h3>Tashkilot ulash</h3><p>Universitet, kollej yoki o'quv markazingizni platformaga tez ulang.</p></div>
+   </div>
+  </section>
+ </div>
+
+ <div class="final" id="yordam">
+  <div>
+   <h2>Yordam kerakmi? Biz bilan bog'laning</h2>
+   <div class="cta">
+    <a href="/yordam/" class="btn line">Yordam markazi</a>
+    <a href="/registratsiya/" class="btn fill">Kirish / Ro'yxatdan o'tish</a>
+   </div>
+  </div>
+ </div>
+</main>
+
+<footer>© 2026 Talim. Barcha huquqlar himoyalangan.</footer>
+</body>
+</html>
